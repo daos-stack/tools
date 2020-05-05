@@ -29,4 +29,4 @@ if [ ! -e "${dnl_fname}" ]; then
 fi
 
 rm -f ./bullseyecoverage-linux.tar
-ln -s "${dnl_fname}" ./bullseyecoverage-linux.tar
+ln "${dnl_fname}" ./bullseyecoverage-linux.tar
