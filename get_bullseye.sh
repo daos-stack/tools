@@ -10,7 +10,7 @@ curl --location --retry 10 --retry-max-time 60 --silent --show-error \
   "${bullseye_url}" -o $dir_out
 
 # Extract the filename from the listing
-dnl_fname=$(sed -ne '/Linux-x64/s/.*href="\(.*\)<\/a>.*/\1/p')
+dnl_fname="$(sed -ne '/Linux-x64/s/.*href="\(.*\)\".*<\/a>.*/\1/p' $dir_out)"
 
 # Check that we found one.
 if [ -z "${dnl_fname}" ]; then

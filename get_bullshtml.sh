@@ -16,6 +16,8 @@ if [ "${bullshtml_tar}" -nt bullshtml ]; then
   mkdir -p bullshtml
   tar -C bullshtml --strip-components=1 -xf "${bullshtml_tar}"
   pushd bullshtml
+    # Use self contained build script that installs the gradle environment
+    # and builds the resulting jar file.
     if [ ! -e build ]; then
       ./gradlew build
     fi
