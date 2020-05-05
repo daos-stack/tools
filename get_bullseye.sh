@@ -10,7 +10,7 @@ curl --location --retry 10 --retry-max-time 60 --silent --show-error \
   "${bullseye_url}" -o $dir_out
 
 # Extract the filename from the listing
-dnl_fname=$(grep -i linux $dir_out | awk -F[\"] '{print $6}')
+dnl_fname=$(sed -ne '/Linux-x64/s/.*href="\(.*\)<\/a>.*/\1/p')
 
 # Check that we found one.
 if [ -z "${dnl_fname}" ]; then
@@ -25,8 +25,8 @@ if [ ! -e "${dnl_fname}" ]; then
 
   # Pull down that version
   curl --location --retry 10 --retry-max-time 60 --silent --show-error \
-    "${bullseye_url}/${dnl_fname}" -o "${dnl_fname}"
+    "${bullseye_url}/${dnl_fname}" -O
 fi
 
 rm -f ./bullseyecoverage-linux.tar
-cp "${dnl_fname}" ./bullseyecoverage-linux.tar
+ln -s "${dnl_fname}" ./bullseyecoverage-linux.tar
