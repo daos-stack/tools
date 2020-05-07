@@ -28,5 +28,8 @@ if [ ! -e "${dnl_fname}" ]; then
     "${bullseye_url}/${dnl_fname}" -O
 fi
 
+# sanity check to make sure we have a good tarball
+tar -tf "${dnl_fname}" > /dev/null
+
 rm -f ./bullseyecoverage-linux.tar
 ln "${dnl_fname}" ./bullseyecoverage-linux.tar

@@ -26,3 +26,6 @@ fi
 
 rm -f ./bullshtml.jar
 cp bullshtml/build/libs/bullshtml-*.jar ./bullshtml.jar
+
+# Make sure we got a valid jar
+unzip -t ./bullshtml.jar > /dev/null

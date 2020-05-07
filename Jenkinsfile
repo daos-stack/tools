@@ -34,6 +34,17 @@ pipeline {
                   }
                 } // post
             } // stage ('bullshtml')
+            stage ('maldetect') {
+                steps {
+                    sh script: './get_maldetect.sh',
+                       label: 'Get maldetect'
+                }
+                post {
+                  success {
+                      archiveArtifacts artifacts: 'maldetect-current.tar.gz'
+                  }
+                } // post
+            } // stage ('maldetect')
         } // parallel
         } // stage ('tools')
     } // stages
