@@ -23,28 +23,6 @@ pipeline {
                   }
                 } // post
             } // stage ('bullseye')
-            stage ('bullshtml') {
-                steps {
-                    sh script: './get_bullshtml.sh',
-                       label: 'Get bullshtml'
-                }
-                post {
-                  success {
-                      archiveArtifacts artifacts: 'bullshtml.jar'
-                  }
-                } // post
-            } // stage ('bullshtml')
-            stage ('maldetect') {
-                steps {
-                    sh script: './get_maldetect.sh',
-                       label: 'Get maldetect'
-                }
-                post {
-                  success {
-                      archiveArtifacts artifacts: 'maldetect-current.tar.gz'
-                  }
-                } // post
-            } // stage ('maldetect')
         } // parallel
         } // stage ('tools')
     } // stages
